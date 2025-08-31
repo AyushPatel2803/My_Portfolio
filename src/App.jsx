@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ParticlesBackground from "./ParticlesBackground";
-import { useState } from "react";
 import { SiGooglecolab } from "react-icons/si";
 
 const projects = [
@@ -29,6 +29,20 @@ const projects = [
 export default function App() {
   const [activeIdx, setActiveIdx] = useState(0);
 
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    const referrer = document.referrer;
+
+    if (hash === "#thankyou" && referrer.includes("formsubmit.co")) {
+      setShowThankYou(true);
+      const thankyouSection = document.getElementById("thankyou");
+      if (thankyouSection) {
+        thankyouSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
   return (
     <div className="relative font-sans text-gray-800">
       <div className="absolute inset-0 -z-10">
@@ -212,15 +226,21 @@ export default function App() {
             Contact
           </h2>
           <p className="text-white mb-10">
-            I’d love to hear about your next project or opportunity—feel free to
-            drop me a message!
+            I’d love to hear about your next project or opportunity—feel free to drop me a message! <strong>Thank you.</strong>
           </p>
+
           <form
-            action="mailto:imayushpatel28@gmail.com"
+            action="https://formsubmit.co/imayushpatel28@gmail.com"
             method="POST"
-            encType="text/plain"
             className="grid gap-4"
           >
+            <input type="hidden" name="_captcha" value="false" />
+            <input
+              type="hidden"
+              name="_next"
+              value="https://ayushpatel2803.github.io/My_Portfolio/#home"
+            />
+
             <input
               type="text"
               name="Name"
