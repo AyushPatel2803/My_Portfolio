@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2) Base layer for your fonts */
+@layer base {
+  /* Nav bar links */
+  nav,
+  nav a {
+    font-family: 'NewAcademy', sans-serif;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'JoystixMonoSpace', monospace;
+  }
+
+  /* Body & other text */
+  body,
+  p,
+  li,
+  input,
+  textarea,
+  button {
+    font-family: 'PoppinsRegular', sans-serif;
+  }
+}
+
+/* 3) Custom utilities layer for stripes */
+@layer utilities {
+  /* subtle diagonal stripe pattern */
+  .bg-stripes {
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.08) 1px,
+        transparent 1px,
+        transparent 12px
+      );
+  }
+}
+
+html, body {
+  background-color: transparent !important;
+}
